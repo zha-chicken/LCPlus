@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCPlus 主题选择器 - 在线获取最新CSS</title>
+    <style>
+        /* 页面基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* 主题卡片网格 */
+        .theme-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .theme-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            width: 260px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .theme-card.selected {
+            border-color: #4a627a;
+            box-shadow: 0 20px 40px rgba(74,98,122,0.3);
+        }
+
+        /* 预览色块 */
+        .theme-preview {
+            height: 140px;
+            position: relative;
+        }
+        .preview-darkblue { background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%); }
+        .preview-colorful { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
+        .preview-lightgrey { background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%); }
+        .preview-lightgreen { background: linear-gradient(135deg, #c8e6c9 0%, #e8f5e9 100%); }
+
+        .preview-header {
+            height: 35px;
+            background: rgba(0,0,0,0.1);
+            margin-bottom: 12px;
+        }
+        .preview-card {
+            height: 50px;
+            background: rgba(255,255,255,0.3);
+            margin: 10px;
+            border-radius: 8px;
+            backdrop-filter: blur(2px);
+        }
+
+        .theme-info {
+            padding: 16px;
+        }
+        .theme-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .theme-desc {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        /* 代码展示区 */
+        .code-section {
+            background: #1e1e2e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .code-label {
+            color: #fff;
+            font-weight: 500;
+        }
+        .copy-btn {
+            background: #4a627a;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #5c7a96;
+        }
+        pre {
+            background: #0d1117;
+            padding: 16px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 13px;
+            font-family: monospace;
+            color: #e6e6e6;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .loading {
+            text-align: center;
+            color: #aaa;
+            padding: 20px;
+        }
+        .error {
+            color: #ff6b6b;
+            background: rgba(255,0,0,0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .usage-guide {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 LCPlus 主题选择器</h1>
+        <div class="subtitle">点击主题，自动获取最新CSS，一键复制到Stylus</div>
+
+        <div class="theme-grid" id="themeGrid">
+            <!-- 深蓝主题 -->
+            <div class="theme-card" data-theme="深蓝" data-url="https://cdn.jsdelivr.net/gh/zha-chicken/LCPlus/theme_darkblue.css">
+                <div class="theme-preview preview-darkblue">
+                    <div class="preview-header"></div>
+                    <div class="preview-card"></div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">🌙 深蓝沉稳</div>
+                    <div class="theme-desc">专业 · 护眼 · 长时间专注</div>
+                </div>
+            </div>
+
+            <!-- 五彩主题 -->
+            <div class="theme-card" data-theme="五彩" data-url="https://cdn.jsdelivr.net/gh/zha-chicken/LCPlus/Blendedtheme.css">
+                <div class="theme-preview preview-colorful">
+                    <div class="preview-header"></div>
+                    <div class="preview-card"></div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">🌈 五彩缤纷</div>
+                    <div class="theme-desc">活力 · 渐变 · 彰显个性</div>
+                </div>
+            </div>
+
+            <!-- 浅灰主题 -->
+            <div class="theme-card" data-theme="浅灰" data-url="https://cdn.jsdelivr.net/gh/zha-chicken/LCPlus/LightGreyTheme.css">
+                <div class="theme-preview preview-lightgrey">
+                    <div class="preview-header"></div>
+                    <div class="preview-card"></div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">⚪ 浅灰简约</div>
+                    <div class="theme-desc">干净 · 极简 · 内容优先</div>
+                </div>
+            </div>
+
+            <!-- 浅绿主题 -->
+            <div class="theme-card" data-theme="浅绿" data-url="https://cdn.jsdelivr.net/gh/zha-chicken/LCPlus/LightGreenTheme.css">
+                <div class="theme-preview preview-lightgreen">
+                    <div class="preview-header"></div>
+                    <div class="preview-card"></div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">🌿 浅绿清新</div>
+                    <div class="theme-desc">护眼 · 柔和 · 舒适学习</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-section" id="codeSection">
+            <div class="code-header">
+                <span class="code-label">📋 Stylus 代码（点击下方按钮复制）</span>
+                <button class="copy-btn" id="copyBtn">📋 复制代码</button>
+            </div>
+            <div id="codeBlock">请先点击上方选择主题</div>
+        </div>
+
+        <div class="usage-guide">
+            <h3>📖 如何使用</h3>
+            <ol>
+                <li>点击上方任意主题 → 自动获取最新CSS</li>
+                <li>点击「复制代码」按钮</li>
+                <li>安装浏览器插件 <strong>Stylus</strong>（Chrome / Edge 商店）</li>
+                <li>打开 Stylus → 管理 → 编写新样式 → 粘贴代码</li>
+                <li>保存，打开 <code>linkedclassroom.com</code> 即可生效</li>
+            </ol>
+            <p>💡 所有主题代码均从 CDN 实时获取，保证最新版本。</p>
+        </div>
+        <footer>LCPlus · 纯CSS美化 · 不收集任何数据</footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const cards = document.querySelectorAll('.theme-card');
+        const copyBtn = document.getElementById('copyBtn');
+        const codeBlockDiv = document.getElementById('codeBlock');
+
+        let currentCSS = '';
+
+        // 加载CSS的函数
+        async function loadCSS(url, themeName) {
+            codeBlockDiv.innerHTML = '<div class="loading">⏳ 正在加载最新CSS...</div>';
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const cssText = await response.text();
+                currentCSS = cssText;
+                // 显示代码（限制显示长度，但不截断内容）
+                codeBlockDiv.innerHTML = `<pre>${escapeHtml(cssText)}</pre>`;
+                return true;
+            } catch (err) {
+                codeBlockDiv.innerHTML = `<div class="error">❌ 加载失败：${err.message}<br>请检查网络或稍后重试。</div>`;
+                currentCSS = '';
+                return false;
+            }
+        }
+
+        // 简单的防XSS
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
+
+        // 卡片点击事件
+        cards.forEach(card => {
+            card.addEventListener('click', async () => {
+                // 移除其他卡片的选中样式
+                cards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                const url = card.dataset.url;
+                const themeName = card.dataset.theme;
+                if (url) {
+                    await loadCSS(url, themeName);
+                } else {
+                    codeBlockDiv.innerHTML = '<div class="error">❌ 无效的CSS链接</div>';
+                }
+            });
+        });
+
+        // 复制按钮事件
+        copyBtn.addEventListener('click', () => {
+            if (currentCSS) {
+                navigator.clipboard.writeText(currentCSS).then(() => {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = '✅ 已复制！';
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                    }, 2000);
+                }).catch(() => {
+                    alert('复制失败，请手动复制');
+                });
+            } else {
+                alert('请先点击选择一个主题');
+            }
+        });
+
+        // 默认自动加载第一个主题（深蓝）
+        if (cards.length > 0) {
+            cards[0].click();
+        }
+    </script>
+</body>
+</html>
