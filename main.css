@@ -1,0 +1,417 @@
+/* 课程菜单 - 现代化弹窗风格 */
+.collapse.in {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 999999 !important;
+    
+    /* 视觉效果 */
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset !important;
+    
+    /* 尺寸 */
+    width: 360px !important;
+    max-width: 90vw !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    
+    /* 内边距 */
+    padding: 0 !important;
+    
+    /* 动画 */
+    animation: slideIn 0.2s ease-out !important;
+}
+
+/* 标题栏 */
+.collapse.in::before {
+    content: "📚 我的课程";
+    display: block !important;
+    padding: 16px 20px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 关闭按钮 */
+.collapse.in::after {
+    content: "✕";
+    position: absolute !important;
+    top: 12px !important;
+    right: 18px !important;
+    font-size: 20px !important;
+    color: white !important;
+    cursor: pointer !important;
+    z-index: 1 !important;
+    font-weight: bold !important;
+}
+
+.collapse.in::after:hover {
+    opacity: 0.8 !important;
+}
+
+/* 列表项 */
+.collapse.in .list-group-item {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    background: transparent !important;
+}
+
+.collapse.in .list-group-item:last-child {
+    border-bottom: none !important;
+}
+
+/* 链接样式 */
+.collapse.in .list-group-item a {
+    display: block !important;
+    padding: 14px 20px !important;
+    color: #4a5568 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 悬停效果 */
+.collapse.in .list-group-item a:hover {
+    background: linear-gradient(90deg, #f0f4ff 0%, #ffffff 100%) !important;
+    color: #667eea !important;
+    padding-left: 28px !important;
+}
+
+/* 滚动条美化 */
+.collapse.in::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.collapse.in::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 10px !important;
+}
+
+.collapse.in::-webkit-scrollbar-thumb {
+    background: #cbd5e0 !important;
+    border-radius: 10px !important;
+}
+
+.collapse.in::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0 !important;
+}
+
+/* 入场动画 */
+@keyframes slideIn {
+    from {
+        opacity: 0 !important;
+        transform: translate(-50%, -45%) !important;
+    }
+    to {
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+/* 即将到来的事件区块 */
+.block_calendar_upcoming {
+    background-color: #4a627a !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+}
+
+.block_calendar_upcoming .card-body,
+.block_calendar_upcoming .card-title,
+.block_calendar_upcoming .card-text {
+    background-color: #4a627a !important;
+    color: #ffffff !important;
+}
+
+.block_calendar_upcoming a {
+    color: #ffd966 !important;
+}
+
+.block_calendar_upcoming a:hover {
+    color: #ffffff !important;
+}
+
+/* 最近访问的课程区块 */
+.block_recentlyaccessedcourses {
+    background-color: #4a627a !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+}
+
+.block_recentlyaccessedcourses .card-body,
+.block_recentlyaccessedcourses .card-title,
+.block_recentlyaccessedcourses .card-text {
+    background-color: #4a627a !important;
+    color: #ffffff !important;
+}
+
+.block_recentlyaccessedcourses .dashboard-card {
+    background-color: #5c7a96 !important;
+}
+
+.block_recentlyaccessedcourses .course-info-container {
+    background-color: #5c7a96 !important;
+}
+
+.block_recentlyaccessedcourses .text-truncate,
+.block_recentlyaccessedcourses .coursename,
+.block_recentlyaccessedcourses .text-muted {
+    color: #ffffff !important;
+}
+
+.block_recentlyaccessedcourses a:hover .coursename {
+    color: #ffd966 !important;
+}
+
+/* 分页按钮样式 */
+.block_recentlyaccessedcourses .pagination .page-link {
+    background-color: #5c7a96 !important;
+    color: #ffffff !important;
+    border-color: #4a627a !important;
+}
+
+.block_recentlyaccessedcourses .pagination .page-link:hover {
+    background-color: #6e8eac !important;
+    color: #ffffff !important;
+}
+
+.block_recentlyaccessedcourses .pagination .disabled .page-link {
+    background-color: #3a4a5a !important;
+    color: #aaaaaa !important;
+}
+/* ===== 课程卡片样式 ===== */
+.dashboard-card {
+    background-color: #4a627a !important;
+}
+
+.dashboard-card .card-body,
+.dashboard-card .course-info-container {
+    background-color: #4a627a !important;
+}
+
+.dashboard-card .text-truncate,
+.dashboard-card .coursename,
+.dashboard-card .text-muted {
+    color: #ffffff !important;
+}
+
+.dashboard-card a:hover .coursename {
+    color: #ffd966 !important;
+}
+
+/* ===== 个人主页顶部样式 ===== */
+.page-context-header {
+    background-color: #4a627a !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    margin-bottom: 20px !important;
+}
+
+.page-header-image {
+    background-color: transparent !important;
+}
+
+.page-header-headings h1 {
+    color: #ffffff !important;
+}
+
+.header-button-group .btn {
+    background-color: #5c7a96 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.header-button-group .btn:hover {
+    background-color: #6e8eac !important;
+    color: #ffffff !important;
+}
+
+.header-button-group .btn i {
+    color: #ffffff !important;
+}
+#page-header .card {
+    background-color: #3a4a5a !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#page-header .card-body {
+    background-color: #3a4a5a !important;
+}
+
+/* 改侧边栏背景色 */
+#nav-drawer {
+    background-color: #2c3e50 !important;  /* 深蓝灰色，你可以换成任何颜色 */
+}
+/* 课程磁贴（tiles）容器背景 */
+#multi_section_tiles {
+    background-color: #4a627a !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+}
+
+/* 单个磁贴背景 */
+.tile {
+    background-color: #5c7a96 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 带图片的磁贴：背景图 + 半透明遮罩，让文字清晰 */
+.phototile {
+    position: relative !important;
+}
+
+.phototile::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(74, 98, 122, 0.7) !important;
+    border-radius: 12px !important;
+    z-index: 1 !important;
+}
+
+.phototile .tile-link,
+.phototile .photo-tile-text {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* 磁贴文字颜色 */
+.tile h3 {
+    color: #ffffff !important;
+}
+
+/* 磁贴图标颜色 */
+.tile-icon i {
+    color: #ffffff !important;
+}
+
+/* 磁贴悬停效果 */
+.tile:hover {
+    background-color: #6e8eac !important;
+    transform: translateY(-2px) !important;
+    transition: all 0.2s ease !important;
+}
+
+.phototile:hover::before {
+    background-color: rgba(74, 98, 122, 0.85) !important;
+}
+
+/* 顶部导航栏背景改为蓝灰色 */
+.fixed-top.navbar {
+    background-color: #4a627a !important;
+}
+
+/* 导航栏中的按钮和链接 */
+.navbar .nav-link,
+.navbar .dropdown-toggle,
+.navbar .navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .dropdown-toggle:hover {
+    color: #ffd966 !important;
+}
+
+/* 导航栏图标 */
+.navbar i {
+    color: #ffffff !important;
+}
+
+.navbar i:hover {
+    color: #ffd966 !important;
+}
+
+/* 通知气泡数字 */
+.count-container {
+    background-color: #e67e22 !important;
+    color: #ffffff !important;
+}
+
+/* 下拉菜单背景 */
+.dropdown-menu {
+    background-color: #5c7a96 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #ffffff !important;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #6e8eac !important;
+    color: #ffffff !important;
+}
+
+/* 用户头像区域 */
+.userbutton {
+    color: #ffffff !important;
+}
+
+/* 课程卡片区域背景改为蓝灰色 */
+.card-deck {
+    background-color: #4a627a !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+}
+
+/* 单个卡片背景 */
+.card {
+    background-color: #5c7a96 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 卡片主体 */
+.card-body {
+    background-color: #5c7a96 !important;
+}
+
+/* 卡片标题 */
+.card-title a {
+    color: #ffffff !important;
+}
+
+.card-title a:hover {
+    color: #ffd966 !important;
+}
+
+/* 卡片底栏 */
+.card-footer {
+    background-color: #4a627a !important;
+    border-top: 1px solid #6e8eac !important;
+}
+
+/* 课程分类标签 */
+.badge-info {
+    background-color: #3a5a7a !important;
+}
+
+.badge-info a {
+    color: #ffffff !important;
+}
+
+/* 访问按钮 */
+.btn-primary {
+    background-color: #3a5a7a !important;
+    border-color: #2a4a6a !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #2a4a6a !important;
+    border-color: #1a3a5a !important;
+    color: #ffd966 !important;
+}
